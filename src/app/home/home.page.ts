@@ -40,7 +40,7 @@ export class HomePage {
   }
 
   getLocation() {
-    Geolocation.watchPosition({},
+    Geolocation.getCurrentPosition().then(
       (position) => {
         if (position) {
           console.log(position);
@@ -50,11 +50,10 @@ export class HomePage {
             if (!this.map) {
               this.showMap(new google.maps.LatLng(this.myLat, this.myLng));
             }
-
           }
         }
-
-      });
+      }
+    );
   }
 
   showMap(location) {
